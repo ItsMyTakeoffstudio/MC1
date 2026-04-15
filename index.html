@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MC AUDIOS — Experience Sound Like Never Before</title>
+<meta name="description" content="MC AUDIOS manufactures premium custom audio systems and home theatre setups crafted for audiophiles.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ===== RESET & VARIABLES ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #070707;
+  --bg2: #0d0d0d;
+  --bg3: #131313;
+  --bg4: #1a1a1a;
+  --bg5: #222;
+  --gold: #c9a84c;
+  --gold2: #e8c97a;
+  --gold3: #a07830;
+  --white: #f0ece3;
+  --text: #c8c2b8;
+  --muted: #666;
+  --muted2: #444;
+  --border: rgba(201,168,76,0.18);
+  --border2: rgba(255,255,255,0.07);
+  --shadow: 0 24px 80px rgba(0,0,0,0.7);
+  --shadow2: 0 8px 32px rgba(0,0,0,0.5);
+  --radius: 2px;
+  --radius2: 6px;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Outfit', sans-serif;
+  --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+input, textarea, select {
+  font-family: var(--font-body);
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  color: var(--white);
+  padding: 12px 16px;
+  border-radius: var(--radius2);
+  width: 100%;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  outline: none;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+}
+select option { background: var(--bg4); }
+button { cursor: pointer; font-family: var(--font-body); border: none; outline: none; }
+::selection { background: var(--gold); color: var(--bg); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold3); border-radius: 2px; }
+
+/* ===== UTILITY ===== */
+.hidden { display: none !important; }
+.gold { color: var(--gold); }
+.fade-in { animation: fadeIn 0.6s ease forwards; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes glow { 0%,100%{box-shadow:0 0 8px rgba(201,168,76,0.4)} 50%{box-shadow:0 0 20px rgba(201,168,76,0.8)} }
+@keyframes dotPulse { 0%,100%{box-shadow:0 0 4px rgba(201,168,76,0.6)} 50%{box-shadow:0 0 10px rgba(201,168,76,1)} }
+
+/* ===== SECRET ADMIN DOT ===== */
+#admin-dot {
+  position: fixed;
+  top: 22px; right: 20px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  z-index: 9999;
+  cursor: pointer;
+  animation: dotPulse 3s ease infinite;
+  transition: all 0.3s;
+}
+#admin-dot:hover {
+  width: 11px; height: 11px;
+  top: 20px; right: 18px;
+  background: var(--gold2);
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 5%;
+  display: flex; align-items: center; gap: 20px;
+  height: 70px;
+  background: rgba(7,7,7,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+nav.scrolled { height: 60px; background: rgba(7,7,7,0.98); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links {
+  display: flex; gap: 2.5rem; align-items: center;
+  margin-left: auto;
+  margin-right: 28px; /* space before admin dot */
+}
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: var(--transition);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-track-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--gold);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.nav-track-btn:hover { background: var(--gold); color: var(--bg); }
+
+/* HAMBURGER — LEFT SIDE */
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  z-index: 10; flex-shrink: 0; order: -1;
+}
+.hamburger span { width: 24px; height: 2px; background: var(--white); transition: var(--transition); border-radius: 2px; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 5% 80px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+.hero-content { position: relative; max-width: 800px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  animation: fadeIn 0.8s 0.2s both;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 24px;
+  animation: fadeIn 0.8s 0.4s both;
+}
+.hero-title em { font-style: italic; color: var(--gold); display: block; }
+.hero-subtitle {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--muted);
+  max-width: 500px;
+  margin-bottom: 48px;
+  font-weight: 300;
+  line-height: 1.8;
+  animation: fadeIn 0.8s 0.6s both;
+}
+.hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeIn 0.8s 0.8s both;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold3) 100%);
+  color: var(--bg);
+  padding: 14px 36px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold2) 0%, var(--gold) 100%);
+  opacity: 0;
+  transition: var(--transition);
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--white);
+  padding: 14px 36px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.hero-stats {
+  position: absolute;
+  bottom: 60px; right: 5%;
+  display: flex; gap: 40px;
+  animation: fadeIn 0.8s 1s both;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--muted);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: fadeIn 1s 1.2s both;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: pulse 2s infinite;
+}
+
+/* ===== MARQUEE ===== */
+.marquee-section {
+  background: var(--bg3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+  overflow: hidden;
+}
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.marquee-item {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 40px;
+  display: flex; align-items: center; gap: 16px;
+}
+.marquee-item span { color: var(--gold); font-size: 0.5rem; }
+
+/* ===== SECTIONS ===== */
+section { padding: 100px 5%; }
+.section-header { margin-bottom: 60px; }
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before {
+  content: '';
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.15;
+}
+.section-subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 16px;
+  font-weight: 300;
+  max-width: 500px;
+}
+
+/* ===== FEATURES STRIP ===== */
+#features {
+  background: var(--bg2);
+  padding: 70px 5%;
+  border-top: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border2);
+}
+.feature-card {
+  background: var(--bg2);
+  padding: 40px 30px;
+  text-align: center;
+  transition: var(--transition);
+}
+.feature-card:hover { background: var(--bg3); }
+.feature-icon {
+  width: 48px; height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.2rem;
+  color: var(--gold);
+  transition: var(--transition);
+}
+.feature-card:hover .feature-icon { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+.feature-title { font-size: 0.85rem; font-weight: 600; color: var(--white); margin-bottom: 8px; letter-spacing: 0.5px; }
+.feature-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+
+/* ===== PRODUCTS ===== */
+#products { background: var(--bg); }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2px;
+  background: var(--border2);
+  border: 1px solid var(--border2);
+}
+.product-card {
+  background: var(--bg2);
+  padding: 0;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.product-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: var(--transition);
+}
+.product-card:hover { background: var(--bg3); transform: translateY(-4px); z-index: 2; box-shadow: var(--shadow); }
+.product-card:hover::after { opacity: 1; }
+.product-image-wrap {
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.product-img-bg { position: absolute; inset: 0; background: var(--bg3); }
+.product-visual {
+  position: relative;
+  z-index: 1;
+  font-size: 5rem;
+  filter: drop-shadow(0 0 30px rgba(201,168,76,0.3));
+  transition: transform 0.5s ease;
+}
+.product-card:hover .product-visual { transform: scale(1.1) rotate(5deg); }
+.product-badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  z-index: 2;
+}
+.product-stock-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: var(--radius);
+  z-index: 2;
+}
+.in-stock { background: rgba(46,213,115,0.15); color: #2ed573; border: 1px solid rgba(46,213,115,0.3); }
+.out-stock { background: rgba(255,71,87,0.15); color: #ff4757; border: 1px solid rgba(255,71,87,0.3); }
+.product-body { padding: 28px; }
+.product-category {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.product-name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.product-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.product-specs-preview {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border2);
+}
+.spec-chip {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.spec-chip i { color: var(--gold); font-size: 0.7rem; }
+.product-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid var(--border2);
+  gap: 12px;
+}
+.product-price {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+.product-price small {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--muted);
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  font-weight: 400;
+}
+.btn-specs {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--white);
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-specs:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+.btn-specs:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ===== MODAL OVERLAY ===== */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: fadeOverlay 0.3s ease;
+}
+@keyframes fadeOverlay { from{opacity:0} to{opacity:1} }
+.modal {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlide 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+}
+@keyframes modalSlide { from{opacity:0;transform:scale(0.92) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 1;
+}
+.modal-close:hover { background: rgba(255,71,87,0.2); color: #ff4757; border-color: rgba(255,71,87,0.3); }
+
+/* ===== SPECS MODAL ===== */
+.specs-header {
+  padding: 36px 36px 28px;
+  border-bottom: 1px solid var(--border2);
+}
+.specs-product-visual {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(201,168,76,0.3));
+}
+.specs-category { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.specs-title { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.specs-tagline { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; }
+.specs-price-display {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  padding: 8px 16px;
+  margin-top: 8px;
+}
+.specs-price-display .price-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.specs-price-display .price-val { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); font-weight: 600; }
+.specs-body { padding: 28px 36px; }
+.specs-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.spec-item {
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  padding: 14px;
+  display: flex; align-items: flex-start; gap: 12px;
+  transition: var(--transition);
+}
+.spec-item:hover { border-color: var(--border); }
+.spec-icon {
+  width: 32px; height: 32px;
+  background: rgba(201,168,76,0.1);
+  border-radius: var(--radius2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.spec-info label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); display: block; margin-bottom: 3px; }
+.spec-info span { font-size: 0.82rem; color: var(--white); font-weight: 500; }
+.specs-footer { padding: 0 36px 36px; display: flex; gap: 12px; }
+.btn-order {
+  flex: 1;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold3) 100%);
+  color: var(--bg);
+  padding: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+}
+.btn-order:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+.btn-order:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ===== ORDER MODAL ===== */
+.order-modal-header {
+  padding: 36px 36px 24px;
+  border-bottom: 1px solid var(--border2);
+}
+.order-modal-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); font-weight: 600; }
+.order-modal-sub { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+.order-form { padding: 28px 36px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+.form-group .required { color: var(--gold); }
+.order-product-preview {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 24px;
+}
+.order-product-preview .emoji { font-size: 1.5rem; }
+.order-product-preview .prod-name { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+.order-product-preview .prod-cat { font-size: 0.7rem; color: var(--gold); }
+.order-footer { padding: 0 36px 36px; }
+.order-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.order-note i { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+
+/* ===== CONFIRMATION ===== */
+.confirmation-modal { text-align: center; padding: 48px 36px; }
+.confirmation-icon {
+  width: 72px; height: 72px;
+  background: rgba(46,213,115,0.15);
+  border: 2px solid rgba(46,213,115,0.4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 2rem;
+  color: #2ed573;
+  animation: glow 2s ease infinite;
+}
+.confirmation-title { font-family: var(--font-display); font-size: 2rem; color: var(--white); margin-bottom: 12px; }
+.confirmation-sub { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+.order-id-badge {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  padding: 12px 20px;
+  display: inline-block;
+  margin-bottom: 32px;
+}
+.order-id-badge span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); display: block; margin-bottom: 4px; }
+.order-id-badge strong { font-size: 1.1rem; color: var(--gold); font-family: var(--font-display); font-weight: 700; letter-spacing: 2px; }
+.whatsapp-btn {
+  background: #25D366;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.whatsapp-btn:hover { background: #1db954; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+
+/* ===== TRACKING ===== */
+#tracking { background: var(--bg2); border-top: 1px solid var(--border2); }
+.tracking-container { max-width: 600px; margin: 0 auto; }
+.tracking-form { display: flex; gap: 12px; margin: 40px 0; }
+.tracking-form input { flex: 1; }
+.btn-track {
+  background: var(--gold);
+  color: var(--bg);
+  padding: 12px 28px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: var(--radius2);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-track:hover { background: var(--gold2); }
+.tracking-result {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius2);
+  padding: 28px;
+  animation: slideDown 0.4s ease;
+}
+.tracking-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+.tracking-order-id { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 4px; }
+.tracking-product { font-size: 1rem; font-weight: 600; color: var(--white); }
+.tracking-steps { display: flex; flex-direction: column; gap: 0; }
+.step { display: flex; gap: 16px; position: relative; }
+.step::before {
+  content: '';
+  position: absolute;
+  left: 15px; top: 32px;
+  width: 2px; height: calc(100% - 16px);
+  background: var(--bg5);
+}
+.step:last-child::before { display: none; }
+.step.done::before { background: var(--gold); }
+.step.active::before { background: linear-gradient(to bottom, var(--gold), var(--bg5)); }
+.step-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--bg5);
+  background: var(--bg4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  position: relative; z-index: 1;
+  transition: var(--transition);
+}
+.step.done .step-dot { background: var(--gold); border-color: var(--gold); color: var(--bg); }
+.step.active .step-dot { border-color: var(--gold); color: var(--gold); animation: glow 1.5s ease infinite; }
+.step-content { padding: 4px 0 24px; }
+.step-label { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.step.done .step-label, .step.active .step-label { color: var(--white); }
+.step-sub { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+.step.active .step-sub { color: var(--gold); }
+
+/* ===== WHY US ===== */
+#why-us { background: var(--bg); }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.why-visual { position: relative; height: 400px; display: flex; align-items: center; justify-content: center; }
+.why-bg-circle { width: 300px; height: 300px; border-radius: 50%; border: 1px solid var(--border); position: absolute; animation: spin 20s linear infinite; }
+.why-bg-circle2 { width: 200px; height: 200px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.3); position: absolute; animation: spin 12s linear infinite reverse; }
+.why-center-icon { font-size: 4rem; filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)); animation: glow 3s ease infinite; }
+.why-list { display: flex; flex-direction: column; gap: 28px; }
+.why-item { display: flex; gap: 20px; }
+.why-icon { width: 44px; height: 44px; background: rgba(201,168,76,0.08); border: 1px solid var(--border); border-radius: var(--radius2); display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0; font-size: 1rem; }
+.why-text h4 { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.why-text p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+/* ===== FOOTER ===== */
+footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 60px 5% 30px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+.footer-brand .nav-logo { font-size: 1.5rem; margin-bottom: 16px; display: block; }
+.footer-brand p { font-size: 0.8rem; color: var(--muted); line-height: 1.8; max-width: 260px; }
+.footer-col h5 { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 20px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { font-size: 0.8rem; color: var(--muted); transition: var(--transition); }
+.footer-col ul a:hover { color: var(--gold); }
+.footer-bottom { padding-top: 30px; border-top: 1px solid var(--border2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-bottom p { font-size: 0.72rem; color: var(--muted2); }
+.footer-social { display: flex; gap: 12px; }
+.social-btn { width: 32px; height: 32px; border: 1px solid var(--border2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.75rem; transition: var(--transition); }
+.social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ===== ADMIN LOGIN MODAL ===== */
+.admin-login-modal { max-width: 400px; padding: 48px 40px; text-align: center; }
+.admin-logo { font-family: var(--font-display); font-size: 2rem; color: var(--white); margin-bottom: 6px; }
+.admin-logo span { color: var(--gold); }
+.admin-login-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 32px; }
+.admin-login-form .form-group { text-align: left; margin-bottom: 16px; }
+.login-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold3) 100%);
+  color: var(--bg);
+  padding: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+}
+.login-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.4); }
+.login-error { font-size: 0.75rem; color: #ff4757; margin-top: 12px; }
+
+/* ===== ADMIN PANEL (FULL SCREEN) ===== */
+#admin-panel {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+}
+.admin-nav {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.admin-brand { font-family: var(--font-display); font-size: 1.2rem; color: var(--white); letter-spacing: 2px; }
+.admin-brand span { color: var(--gold); }
+.admin-brand small { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); display: block; font-family: var(--font-body); }
+.admin-nav-right { display: flex; gap: 12px; align-items: center; }
+.notification-bell {
+  position: relative;
+  width: 36px; height: 36px;
+  border: 1px solid var(--border2);
+  background: var(--bg3);
+  border-radius: var(--radius2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.notification-bell:hover { border-color: var(--gold); color: var(--gold); }
+.notif-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: #ff4757; color: #fff;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  font-size: 0.55rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  animation: glow 1.5s ease infinite;
+}
+.btn-logout {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  padding: 8px 16px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: var(--radius2);
+  transition: var(--transition);
+  cursor: pointer;
+}
+.btn-logout:hover { border-color: #ff4757; color: #ff4757; }
+.admin-content { flex: 1; display: flex; min-height: 0; }
+.admin-sidebar {
+  width: 220px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border2);
+  padding: 24px 0;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+.sidebar-section-label {
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  padding: 0 20px;
+  margin: 16px 0 8px;
+}
+.admin-menu-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  border-left: 2px solid transparent;
+}
+.admin-menu-item:hover { background: var(--bg3); color: var(--white); }
+.admin-menu-item.active { background: rgba(201,168,76,0.06); color: var(--gold); border-left-color: var(--gold); }
+.admin-menu-item i { width: 18px; text-align: center; font-size: 0.85rem; }
+.admin-menu-badge {
+  margin-left: auto;
+  background: #ff4757;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+.admin-main { flex: 1; padding: 28px; overflow-y: auto; }
+.admin-page { display: none; }
+.admin-page.active { display: block; animation: fadeIn 0.3s ease; }
+.admin-page-title { font-family: var(--font-display); font-size: 1.8rem; color: var(--white); margin-bottom: 6px; font-weight: 600; }
+.admin-page-sub { font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
+
+/* Admin Stats */
+.admin-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+.admin-stat-card {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  padding: 20px;
+  transition: var(--transition);
+}
+.admin-stat-card:hover { border-color: var(--border); }
+.stat-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.stat-card-icon { width: 36px; height: 36px; border-radius: var(--radius2); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+.stat-card-icon.gold { background: rgba(201,168,76,0.12); color: var(--gold); }
+.stat-card-icon.green { background: rgba(46,213,115,0.12); color: #2ed573; }
+.stat-card-icon.blue { background: rgba(30,144,255,0.12); color: #1e90ff; }
+.stat-card-icon.red { background: rgba(255,71,87,0.12); color: #ff4757; }
+.stat-card-icon.purple { background: rgba(160,100,255,0.12); color: #a064ff; }
+.stat-card-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--white); }
+.stat-card-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Admin Table */
+.admin-table-wrap {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.table-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border2);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px;
+}
+.table-title { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+.table-search {
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  color: var(--white);
+  padding: 8px 12px;
+  border-radius: var(--radius2);
+  font-size: 0.8rem;
+  width: 200px;
+}
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th {
+  padding: 12px 16px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  text-align: left;
+  background: var(--bg4);
+  border-bottom: 1px solid var(--border2);
+  white-space: nowrap;
+}
+.admin-table td {
+  padding: 14px 16px;
+  font-size: 0.82rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border2);
+  vertical-align: middle;
+}
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td { background: rgba(255,255,255,0.02); }
+.order-id-cell { font-family: var(--font-display); font-size: 0.85rem; color: var(--gold); font-weight: 600; }
+.customer-cell strong { display: block; color: var(--white); font-size: 0.85rem; margin-bottom: 2px; }
+.customer-cell a { color: #25D366; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 4px; }
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.status-received { background: rgba(30,144,255,0.12); color: #1e90ff; border: 1px solid rgba(30,144,255,0.2); }
+.status-working { background: rgba(255,165,0,0.12); color: #ffa500; border: 1px solid rgba(255,165,0,0.2); }
+.status-ready { background: rgba(46,213,115,0.12); color: #2ed573; border: 1px solid rgba(46,213,115,0.2); }
+.status-completed { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid var(--border); }
+.status-select {
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  color: var(--white);
+  padding: 6px 10px;
+  border-radius: var(--radius2);
+  font-size: 0.75rem;
+  cursor: pointer;
+  min-width: 160px;
+}
+.action-btns { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius2);
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  white-space: nowrap;
+}
+.btn-invoice { background: rgba(201,168,76,0.12); color: var(--gold); border: 1px solid var(--border); }
+.btn-invoice:hover { background: var(--gold); color: var(--bg); }
+.btn-wa { background: rgba(37,211,102,0.12); color: #25D366; border: 1px solid rgba(37,211,102,0.2); }
+.btn-wa:hover { background: #25D366; color: #fff; }
+.btn-delete { background: rgba(255,71,87,0.1); color: #ff4757; border: 1px solid rgba(255,71,87,0.2); }
+.btn-delete:hover { background: #ff4757; color: #fff; }
+.no-orders { padding: 60px 20px; text-align: center; color: var(--muted); font-size: 0.9rem; }
+.no-orders i { display: block; font-size: 2.5rem; margin-bottom: 16px; color: var(--muted2); }
+
+/* Admin Inventory */
+.inventory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.inventory-card {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  padding: 20px;
+  transition: var(--transition);
+}
+.inventory-card:hover { border-color: var(--border); }
+.inv-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.inv-emoji { font-size: 2rem; }
+.toggle-switch { position: relative; width: 46px; height: 24px; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; inset: 0; background: var(--bg5); border: 1px solid var(--border2); border-radius: 12px; cursor: pointer; transition: 0.3s; }
+.toggle-slider::before { content: ''; position: absolute; left: 3px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: var(--muted); border-radius: 50%; transition: 0.3s; }
+input:checked + .toggle-slider { background: rgba(46,213,115,0.2); border-color: rgba(46,213,115,0.4); }
+input:checked + .toggle-slider::before { transform: translate(22px, -50%); background: #2ed573; }
+.inv-name { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.inv-cat { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.inv-status-label { font-size: 0.75rem; color: var(--muted); }
+.inv-status-value { font-size: 0.8rem; font-weight: 600; margin-top: 2px; }
+
+/* Admin Products Page */
+.products-manage-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.product-manage-card {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  padding: 20px;
+  transition: var(--transition);
+}
+.product-manage-card:hover { border-color: var(--border); }
+.pm-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.pm-emoji { font-size: 1.8rem; }
+.pm-info .pm-name { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+.pm-info .pm-cat { font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+.pm-price-row { margin-bottom: 12px; }
+.pm-price-row label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+.pm-price-input-wrap { display: flex; gap: 8px; align-items: center; }
+.pm-price-input-wrap input { flex: 1; padding: 8px 12px; font-size: 0.85rem; }
+.pm-save-btn {
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--radius2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.pm-save-btn:hover { background: var(--gold2); }
+.pm-note-row label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+.pm-note-row input { font-size: 0.8rem; padding: 8px 12px; }
+
+/* Admin Settings */
+.settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.settings-card {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius2);
+  padding: 24px;
+}
+.settings-card h3 { font-size: 0.85rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.settings-card p { font-size: 0.75rem; color: var(--muted); margin-bottom: 20px; }
+.settings-card .form-group { margin-bottom: 14px; }
+.settings-card .form-group label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+.settings-card .form-group input { padding: 10px 12px; font-size: 0.85rem; }
+.settings-save-btn {
+  background: linear-gradient(135deg, var(--gold), var(--gold3));
+  color: var(--bg);
+  border: none;
+  padding: 11px 24px;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  margin-top: 4px;
+}
+.settings-save-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
+.store-info-card { grid-column: 1 / -1; }
+
+/* Invoice print */
+#invoice-print {
+  display: none;
+  position: fixed; inset: 0;
+  background: #fff;
+  z-index: 9999;
+  overflow: auto;
+}
+.invoice-wrap { max-width: 800px; margin: 0 auto; padding: 60px; font-family: 'Outfit', sans-serif; background: #fff; color: #1a1a1a; }
+.inv-header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; }
+.inv-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 700; color: #0a0a0a; letter-spacing: 4px; }
+.inv-logo span { color: #c9a84c; }
+.inv-logo small { display: block; font-size: 0.7rem; letter-spacing: 3px; font-family: 'Outfit', sans-serif; color: #888; font-weight: 400; margin-top: 4px; }
+.inv-label { text-align: right; }
+.inv-label h2 { font-size: 2rem; font-weight: 300; color: #0a0a0a; letter-spacing: 4px; text-transform: uppercase; }
+.inv-label p { font-size: 0.75rem; color: #888; margin-top: 4px; }
+.inv-gold-line { height: 2px; background: linear-gradient(to right, #c9a84c, transparent); margin-bottom: 40px; }
+.inv-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.inv-info-col h4 { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #c9a84c; margin-bottom: 10px; }
+.inv-info-col p { font-size: 0.85rem; color: #333; line-height: 1.7; }
+.inv-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+.inv-table thead th { padding: 12px 16px; background: #0a0a0a; color: #fff; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; text-align: left; }
+.inv-table thead th:last-child { text-align: right; }
+.inv-table tbody td { padding: 16px; font-size: 0.85rem; border-bottom: 1px solid #eee; }
+.inv-table tbody td:last-child { text-align: right; font-weight: 600; }
+.inv-total-row td { font-size: 0.9rem; font-weight: 700; color: #c9a84c; padding-top: 20px; border-bottom: none; }
+.inv-warranty { background: #f9f5ec; border: 1px solid #e8d5a0; border-radius: 6px; padding: 16px 20px; display: flex; gap: 12px; align-items: flex-start; margin-bottom: 40px; }
+.inv-warranty i { color: #c9a84c; margin-top: 2px; }
+.inv-warranty p { font-size: 0.8rem; color: #555; line-height: 1.6; }
+.inv-footer-row { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 30px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 16px; }
+.inv-footer-row p { font-size: 0.75rem; color: #aaa; }
+.inv-sig { text-align: right; }
+.inv-sig p { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: #c9a84c; }
+.inv-sig small { font-size: 0.7rem; color: #999; display: block; margin-top: 4px; }
+.inv-print-btn { position: fixed; top: 20px; right: 20px; background: #c9a84c; color: #000; padding: 12px 24px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; border-radius: 4px; cursor: pointer; z-index: 10000; display: flex; align-items: center; gap: 8px; }
+.inv-close-btn { position: fixed; top: 20px; right: 170px; background: #333; color: #fff; padding: 12px 24px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; border-radius: 4px; cursor: pointer; z-index: 10000; }
+@media print { .inv-print-btn, .inv-close-btn { display: none !important; } }
+
+/* Toast */
+#toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 9998; display: flex; flex-direction: column; gap: 8px; }
+.toast { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius2); padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: var(--white); min-width: 280px; animation: slideDown 0.3s ease; box-shadow: var(--shadow2); }
+.toast i { font-size: 1rem; }
+.toast.success { border-color: rgba(46,213,115,0.3); }
+.toast.success i { color: #2ed573; }
+.toast.error { border-color: rgba(255,71,87,0.3); }
+.toast.error i { color: #ff4757; }
+.toast.info { border-color: var(--border); }
+.toast.info i { color: var(--gold); }
+
+/* Mobile Nav Overlay */
+.mobile-nav-overlay {
+  position: fixed; inset: 0;
+  background: rgba(7,7,7,0.98);
+  z-index: 990;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 40px;
+}
+.mobile-nav-overlay a { font-family: var(--font-display); font-size: 2rem; color: var(--white); font-weight: 500; letter-spacing: 2px; transition: var(--transition); }
+.mobile-nav-overlay a:hover { color: var(--gold); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) { .admin-stats { grid-template-columns: repeat(2, 1fr); } .settings-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: 1fr; }
+  .why-visual { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .admin-sidebar { display: none; }
+  .admin-sidebar.mobile-open { display: block; position: fixed; top: 60px; left: 0; bottom: 0; z-index: 100; width: 220px; }
+  .specs-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 70px 5%; }
+  .hero-stats { position: static; margin-top: 60px; flex-wrap: wrap; }
+  .products-grid { grid-template-columns: 1fr; background: none; gap: 16px; border: none; }
+  .product-card { border: 1px solid var(--border2); border-radius: var(--radius2); }
+  .tracking-form { flex-direction: column; }
+  .admin-stats { grid-template-columns: 1fr 1fr; }
+  .admin-main { padding: 16px; }
+  .modal { margin: 0; max-height: 100dvh; border-radius: 0; }
+  .specs-header, .specs-body, .specs-footer, .order-form, .order-modal-header, .order-footer { padding-left: 20px; padding-right: 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .admin-table-wrap { overflow-x: auto; }
+}
+@media (max-width: 480px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .admin-stats { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Secret Admin Dot (top-right, small gold pulsing dot) -->
+<div id="admin-dot" onclick="openAdminLogin()" title="Admin"></div>
+
+<!-- Toast Container -->
+<div id="toast-container"></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <!-- HAMBURGER — LEFT SIDE -->
+  <div class="hamburger" id="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+  <!-- LOGO -->
+  <div class="nav-logo">MC<span>.</span>AUDIOS</div>
+  <!-- NAV LINKS — RIGHT -->
+  <div class="nav-links" id="navLinks">
+    <a href="#products">Products</a>
+    <a href="#features">Features</a>
+    <a href="#why-us">About</a>
+    <a href="#tracking">Track Order</a>
+    <button class="nav-track-btn" onclick="scrollToTracking()">Track Order</button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav-overlay hidden" id="mobileNav">
+  <a href="#products" onclick="closeMobileNav()">Products</a>
+  <a href="#features" onclick="closeMobileNav()">Features</a>
+  <a href="#why-us" onclick="closeMobileNav()">About</a>
+  <a href="#tracking" onclick="closeMobileNav()">Track Order</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span>Premium Audio Systems</span></div>
+    <h1 class="hero-title">Experience Sound<br><em>Like Never Before</em></h1>
+    <p class="hero-subtitle">Handcrafted audio systems and home theatre setups engineered for those who refuse to compromise on sound quality.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Explore Systems</button>
+      <button class="btn-secondary" onclick="scrollToTracking()">Track Your Order</button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">500+</span><div class="stat-label">Systems Installed</div></div>
+    <div class="stat"><span class="stat-num">8+</span><div class="stat-label">Years Crafting</div></div>
+    <div class="stat"><span class="stat-num">100%</span><div class="stat-label">Custom Built</div></div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Home Theatre <span>✦</span></span>
+    <span class="marquee-item">Surround Sound <span>✦</span></span>
+    <span class="marquee-item">Custom Audio <span>✦</span></span>
+    <span class="marquee-item">Premium Speakers <span>✦</span></span>
+    <span class="marquee-item">Audiophile Grade <span>✦</span></span>
+    <span class="marquee-item">2 Year Warranty <span>✦</span></span>
+    <span class="marquee-item">Custom Built <span>✦</span></span>
+    <span class="marquee-item">Home Theatre <span>✦</span></span>
+    <span class="marquee-item">Surround Sound <span>✦</span></span>
+    <span class="marquee-item">Custom Audio <span>✦</span></span>
+    <span class="marquee-item">Premium Speakers <span>✦</span></span>
+    <span class="marquee-item">Audiophile Grade <span>✦</span></span>
+    <span class="marquee-item">2 Year Warranty <span>✦</span></span>
+    <span class="marquee-item">Custom Built <span>✦</span></span>
+  </div>
+</div>
+
+<!-- ===== FEATURES ===== -->
+<section id="features">
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+      <div class="feature-title">Custom Built</div>
+      <div class="feature-desc">Every system is engineered from scratch to your exact specifications and room acoustics.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+      <div class="feature-title">2-Year Warranty</div>
+      <div class="feature-desc">Complete peace of mind with full manufacturer warranty on all components.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-tools"></i></div>
+      <div class="feature-title">Expert Installation</div>
+      <div class="feature-desc">Our certified technicians handle complete setup and acoustic calibration.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-headphones-alt"></i></div>
+      <div class="feature-title">Audiophile Grade</div>
+      <div class="feature-desc">Premium components sourced from the world's leading audio manufacturers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section id="products">
+  <div class="section-header">
+    <div class="section-label">Our Collection</div>
+    <h2 class="section-title">Crafted for<br>Perfect Sound</h2>
+    <p class="section-subtitle">Each system is a masterpiece of acoustic engineering, built to transform any space into a sonic sanctuary.</p>
+  </div>
+  <div class="products-grid" id="productsGrid"><!-- Populated by JS --></div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section id="why-us">
+  <div class="why-grid">
+    <div class="why-visual">
+      <div class="why-bg-circle"></div>
+      <div class="why-bg-circle2"></div>
+      <div class="why-center-icon">🔊</div>
+    </div>
+    <div>
+      <div class="section-label">Why MC AUDIOS</div>
+      <h2 class="section-title" style="margin-bottom:40px">Sound is Our<br><em style="font-style:italic;color:var(--gold)">Obsession</em></h2>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-sliders-h"></i></div>
+          <div class="why-text"><h4>Tailored to Your Space</h4><p>We analyse your room dimensions, acoustics, and listening preferences to design your perfect system.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-star"></i></div>
+          <div class="why-text"><h4>Premium Components Only</h4><p>We use nothing but top-tier drivers, amplifiers, and crossover networks for uncompromised fidelity.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-shipping-fast"></i></div>
+          <div class="why-text"><h4>7–10 Day Turnaround</h4><p>Your custom system is handbuilt and ready for delivery within 7–10 business days.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i class="fas fa-comments"></i></div>
+          <div class="why-text"><h4>Dedicated Support</h4><p>Real-time WhatsApp updates from order confirmation to delivery and beyond.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRACKING ===== -->
+<section id="tracking">
+  <div class="tracking-container">
+    <div class="section-label">Order Status</div>
+    <h2 class="section-title">Track Your Order</h2>
+    <p class="section-subtitle" style="margin-top:12px">Enter your WhatsApp number to check the latest status of your order.</p>
+    <div class="tracking-form">
+      <input type="tel" id="trackInput" placeholder="Enter WhatsApp number (e.g. 919876543210)" oninput="clearTracking()">
+      <button class="btn-track" onclick="trackOrder()">Track <i class="fas fa-search" style="margin-left:6px"></i></button>
+    </div>
+    <div id="trackingResult"></div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo">MC<span style="color:var(--gold)">.</span>AUDIOS</span>
+      <p>Crafting premium custom audio systems and home theatre setups since 2016. Sound is not just heard — it's felt.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Products</h5>
+      <ul>
+        <li><a href="#products">Home Theatre</a></li>
+        <li><a href="#products">Speaker Systems</a></li>
+        <li><a href="#products">Surround Sound</a></li>
+        <li><a href="#products">Custom Audio</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#why-us">About Us</a></li>
+        <li><a href="#features">Our Process</a></li>
+        <li><a href="#tracking">Track Order</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Email Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 MC AUDIOS. All rights reserved. Premium Audio Systems.</p>
+    <div class="footer-social">
+      <a class="social-btn" href="#"><i class="fab fa-instagram"></i></a>
+      <a class="social-btn" href="#"><i class="fab fa-whatsapp"></i></a>
+      <a class="social-btn" href="#"><i class="fab fa-facebook-f"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SPECS MODAL ===== -->
+<div class="modal-overlay hidden" id="specsModal">
+  <div class="modal" id="specsModalContent">
+    <button class="modal-close" onclick="closeSpecs()"><i class="fas fa-times"></i></button>
+    <div class="specs-header" id="specsHeader"></div>
+    <div class="specs-body" id="specsBody"></div>
+    <div class="specs-footer" id="specsFooter"></div>
+  </div>
+</div>
+
+<!-- ===== ORDER MODAL ===== -->
+<div class="modal-overlay hidden" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeOrder()"><i class="fas fa-times"></i></button>
+    <div class="order-modal-header">
+      <div class="order-modal-title">Place Your Order</div>
+      <div class="order-modal-sub">Fill in your details and our team will begin crafting your system.</div>
+    </div>
+    <div class="order-form">
+      <div class="order-product-preview" id="orderProductPreview"></div>
+      <div class="form-row">
+        <div class="form-group"><label>First Name <span class="required">*</span></label><input type="text" id="orderFirstName" placeholder="John"></div>
+        <div class="form-group"><label>Last Name <span class="required">*</span></label><input type="text" id="orderLastName" placeholder="Doe"></div>
+      </div>
+      <div class="form-group"><label>WhatsApp Number <span class="required">*</span></label><input type="tel" id="orderPhone" placeholder="919876543210 (with country code)"></div>
+      <div class="form-group"><label>Delivery Address <span class="required">*</span></label><textarea id="orderAddress" rows="3" placeholder="Full delivery address..."></textarea></div>
+      <div class="form-group"><label>Additional Notes <span style="color:var(--muted);font-size:0.65rem">(optional)</span></label><textarea id="orderNotes" rows="2" placeholder="Any special requirements, customization preferences..."></textarea></div>
+    </div>
+    <div class="order-footer">
+      <div class="order-note"><i class="fas fa-info-circle"></i><span>After placing your order, you'll receive a WhatsApp confirmation. Estimated build & delivery time is <strong style="color:var(--gold)">7–10 days</strong>.</span></div>
+      <button class="btn-order" onclick="submitOrder()">Confirm Order <i class="fas fa-arrow-right" style="margin-left:8px"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONFIRMATION MODAL ===== -->
+<div class="modal-overlay hidden" id="confirmModal">
+  <div class="modal"><div class="confirmation-modal" id="confirmationContent"></div></div>
+</div>
+
+<!-- ===== ADMIN LOGIN MODAL ===== -->
+<div class="modal-overlay hidden" id="adminLoginModal">
+  <div class="modal admin-login-modal">
+    <button class="modal-close" onclick="closeAdminLogin()"><i class="fas fa-times"></i></button>
+    <div class="admin-logo">MC<span>.</span>AUDIOS</div>
+    <div class="admin-login-sub">Admin Panel Access</div>
+    <form class="admin-login-form" onsubmit="adminLogin(event)">
+      <div class="form-group"><label>Admin ID</label><input type="text" id="adminId" placeholder="Enter admin ID" autocomplete="off"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="adminPass" placeholder="Enter password"></div>
+      <button type="submit" class="login-btn">Access Panel <i class="fas fa-lock-open" style="margin-left:8px"></i></button>
+      <div class="login-error hidden" id="loginError">Invalid credentials. Please try again.</div>
+    </form>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div class="hidden" id="admin-panel">
+  <div class="admin-nav">
+    <div class="admin-brand">MC<span>.</span>AUDIOS<small>Admin Panel</small></div>
+    <div class="admin-nav-right">
+      <div class="notification-bell" onclick="openNotifPanel()" title="Notifications">
+        <i class="fas fa-bell"></i>
+        <div class="notif-badge hidden" id="notifBadge">0</div>
+      </div>
+      <button class="btn-logout" onclick="adminLogout()"><i class="fas fa-sign-out-alt" style="margin-right:6px"></i>Logout</button>
+    </div>
+  </div>
+  <div class="admin-content">
+    <div class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-section-label">Overview</div>
+      <div class="admin-menu-item active" onclick="showAdminPage('dashboard',this)"><i class="fas fa-chart-line"></i>Dashboard</div>
+      <div class="sidebar-section-label">Orders</div>
+      <div class="admin-menu-item" id="menu-orders" onclick="showAdminPage('orders',this)"><i class="fas fa-shopping-bag"></i>All Orders <span class="admin-menu-badge hidden" id="badge-new">0</span></div>
+      <div class="sidebar-section-label">Catalogue</div>
+      <div class="admin-menu-item" onclick="showAdminPage('inventory',this)"><i class="fas fa-boxes"></i>Inventory</div>
+      <div class="admin-menu-item" onclick="showAdminPage('products',this)"><i class="fas fa-tag"></i>Pricing</div>
+      <div class="sidebar-section-label">System</div>
+      <div class="admin-menu-item" onclick="showAdminPage('settings',this)"><i class="fas fa-cog"></i>Settings</div>
+    </div>
+    <div class="admin-main">
+      <!-- DASHBOARD -->
+      <div class="admin-page active" id="page-dashboard">
+        <div class="admin-page-title">Dashboard</div>
+        <div class="admin-page-sub">Business overview at a glance.</div>
+        <div class="admin-stats" id="adminStats"></div>
+        <div class="admin-table-wrap">
+          <div class="table-header"><div class="table-title">Recent Orders</div></div>
+          <div id="recentOrdersTable"></div>
+        </div>
+      </div>
+
+      <!-- ALL ORDERS -->
+      <div class="admin-page" id="page-orders">
+        <div class="admin-page-title">All Orders</div>
+        <div class="admin-page-sub">Manage and update all customer orders.</div>
+        <div class="admin-table-wrap">
+          <div class="table-header">
+            <div class="table-title">Orders</div>
+            <input class="table-search" type="text" placeholder="Search orders…" oninput="filterOrders(this.value)">
+          </div>
+          <div id="allOrdersTable"></div>
+        </div>
+      </div>
+
+      <!-- INVENTORY -->
+      <div class="admin-page" id="page-inventory">
+        <div class="admin-page-title">Inventory</div>
+        <div class="admin-page-sub">Toggle product availability on your storefront.</div>
+        <div class="inventory-grid" id="inventoryGrid"></div>
+      </div>
+
+      <!-- PRICING -->
+      <div class="admin-page" id="page-products">
+        <div class="admin-page-title">Pricing Manager</div>
+        <div class="admin-page-sub">Set and update pricing for each product. Changes are reflected immediately on the storefront.</div>
+        <div class="products-manage-grid" id="productsManageGrid"></div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="admin-page" id="page-settings">
+        <div class="admin-page-title">Settings</div>
+        <div class="admin-page-sub">Configure admin credentials and store information.</div>
+        <div class="settings-grid">
+          <div class="settings-card">
+            <h3><i class="fas fa-lock" style="color:var(--gold);margin-right:8px"></i>Change Admin Credentials</h3>
+            <p>Update your admin login ID and password.</p>
+            <div class="form-group"><label>New Admin ID</label><input type="text" id="newAdminId" placeholder="New admin ID"></div>
+            <div class="form-group"><label>Current Password</label><input type="password" id="currentPass" placeholder="Current password"></div>
+            <div class="form-group"><label>New Password</label><input type="password" id="newPass" placeholder="New password"></div>
+            <div class="form-group"><label>Confirm New Password</label><input type="password" id="confirmPass" placeholder="Confirm new password"></div>
+            <button class="settings-save-btn" onclick="saveCredentials()">Update Credentials</button>
+          </div>
+          <div class="settings-card">
+            <h3><i class="fas fa-store" style="color:var(--gold);margin-right:8px"></i>Store Information</h3>
+            <p>Update your store contact details.</p>
+            <div class="form-group"><label>Store Name</label><input type="text" id="storeName" placeholder="MC AUDIOS"></div>
+            <div class="form-group"><label>WhatsApp Number</label><input type="tel" id="storeWhatsapp" placeholder="919876543210"></div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="storeEmail" placeholder="support@mcaudios.com"></div>
+            <div class="form-group"><label>Instagram Handle</label><input type="text" id="storeInsta" placeholder="@mcaudios"></div>
+            <button class="settings-save-btn" onclick="saveStoreInfo()">Save Store Info</button>
+          </div>
+          <div class="settings-card store-info-card">
+            <h3><i class="fas fa-database" style="color:var(--gold);margin-right:8px"></i>Data Management</h3>
+            <p>Manage order data and application storage.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button class="settings-save-btn" style="background:rgba(30,144,255,0.15);color:#1e90ff;border:1px solid rgba(30,144,255,0.3);flex:1" onclick="exportOrders()">
+                <i class="fas fa-download" style="margin-right:6px"></i>Export Orders (JSON)
+              </button>
+              <button class="settings-save-btn" style="background:rgba(255,71,87,0.1);color:#ff4757;border:1px solid rgba(255,71,87,0.2);flex:1" onclick="clearAllOrders()">
+                <i class="fas fa-trash" style="margin-right:6px"></i>Clear All Orders
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INVOICE PRINT ===== -->
+<div id="invoice-print">
+  <button class="inv-print-btn" onclick="window.print()"><i class="fas fa-print"></i> Print / Save PDF</button>
+  <button class="inv-close-btn" onclick="closeInvoice()">✕ Close</button>
+  <div class="invoice-wrap" id="invoiceContent"></div>
+</div>
+
+<script>
+// ===== DATA =====
+let ADMIN_CREDENTIALS = JSON.parse(localStorage.getItem('mcaudios_creds') || 'null') || { id: 'admin', password: 'mcaudios2024' };
+let storeInfo = JSON.parse(localStorage.getItem('mcaudios_store') || 'null') || { name: 'MC AUDIOS', whatsapp: '', email: 'support@mcaudios.com', instagram: '@mcaudios' };
+
+const products = [
+  {
+    id: 1, name: "MC-ELITE X1", category: "Home Theatre System",
+    tagline: "Cinematic 5.1 Surround Experience", emoji: "🔊",
+    description: "The MC-ELITE X1 is our flagship home theatre system, delivering reference-grade audio with a hand-tuned 5.1 surround configuration. Designed for living rooms and dedicated home cinema spaces.",
+    specs: [
+      { icon: "fas fa-bolt", label: "Total Power Output", value: "500W RMS" },
+      { icon: "fas fa-music", label: "Frequency Response", value: "20Hz – 20kHz" },
+      { icon: "fas fa-volume-up", label: "Driver Configuration", value: "5 Satellites + 1 Subwoofer" },
+      { icon: "fas fa-wifi", label: "Connectivity", value: "Bluetooth 5.0 · HDMI ARC · Optical · RCA" },
+      { icon: "fas fa-signal", label: "Signal-to-Noise Ratio", value: "95dB" },
+      { icon: "fas fa-shield-alt", label: "Warranty", value: "2 Years" },
+      { icon: "fas fa-weight-hanging", label: "System Weight", value: "12.5 kg" },
+      { icon: "fas fa-ruler-combined", label: "Main Unit Dims", value: "420 × 280 × 140mm" }
+    ],
+    preview: ["500W", "5.1 Ch", "BT 5.0"]
+  },
+  {
+    id: 2, name: "MC-SURROUND 7.1", category: "Surround Sound System",
+    tagline: "Enveloping 7.1 Audio Architecture", emoji: "🎵",
+    description: "For those who want to be inside the sound. The MC-SURROUND 7.1 places you at the exact center of a 360° audio field with precision-matched driver pairs.",
+    specs: [
+      { icon: "fas fa-bolt", label: "Total Power Output", value: "900W RMS" },
+      { icon: "fas fa-music", label: "Frequency Response", value: "18Hz – 22kHz" },
+      { icon: "fas fa-volume-up", label: "Driver Configuration", value: "7 Satellites + 1 Sub" },
+      { icon: "fas fa-wifi", label: "Connectivity", value: "Bluetooth 5.1 · HDMI 2.1 · Optical · AUX" },
+      { icon: "fas fa-signal", label: "Signal-to-Noise Ratio", value: "98dB" },
+      { icon: "fas fa-shield-alt", label: "Warranty", value: "2 Years" },
+      { icon: "fas fa-weight-hanging", label: "System Weight", value: "18.2 kg" },
+      { icon: "fas fa-ruler-combined", label: "Sub Dimensions", value: "380 × 400 × 380mm" }
+    ],
+    preview: ["900W", "7.1 Ch", "BT 5.1"]
+  },
+  {
+    id: 3, name: "MC-STUDIO PRO", category: "Custom Audio System",
+    tagline: "Reference Monitor Audio", emoji: "🎙️",
+    description: "Engineered for audiophile listening and home studio environments. The MC-STUDIO PRO delivers flat, accurate sound reproduction with a custom crossover network.",
+    specs: [
+      { icon: "fas fa-bolt", label: "Total Power Output", value: "350W RMS per channel" },
+      { icon: "fas fa-music", label: "Frequency Response", value: "15Hz – 25kHz (±1dB)" },
+      { icon: "fas fa-volume-up", label: "Driver Configuration", value: "3-Way Active Monitors" },
+      { icon: "fas fa-plug", label: "Connectivity", value: "XLR · TRS · RCA · AES/EBU" },
+      { icon: "fas fa-signal", label: "THD", value: "< 0.01% at 1kHz" },
+      { icon: "fas fa-shield-alt", label: "Warranty", value: "2 Years" },
+      { icon: "fas fa-weight-hanging", label: "Per Unit Weight", value: "9.8 kg" },
+      { icon: "fas fa-ruler-combined", label: "Monitor Dims", value: "300 × 220 × 250mm" }
+    ],
+    preview: ["350W/ch", "3-Way", "XLR"]
+  },
+  {
+    id: 4, name: "MC-COMPACT S3", category: "Compact Speaker System",
+    tagline: "Audiophile Sound, Minimal Footprint", emoji: "🔉",
+    description: "Don't let the size fool you — the MC-COMPACT S3 packs a sonic punch that belies its elegant form. Ideal for bedrooms, studies, and smaller living spaces.",
+    specs: [
+      { icon: "fas fa-bolt", label: "Total Power Output", value: "120W RMS" },
+      { icon: "fas fa-music", label: "Frequency Response", value: "45Hz – 20kHz" },
+      { icon: "fas fa-volume-up", label: "Driver Configuration", value: "2-Way + Passive Sub" },
+      { icon: "fas fa-wifi", label: "Connectivity", value: "Bluetooth 5.0 · Optical · AUX · USB-C" },
+      { icon: "fas fa-signal", label: "Signal-to-Noise Ratio", value: "90dB" },
+      { icon: "fas fa-shield-alt", label: "Warranty", value: "2 Years" },
+      { icon: "fas fa-weight-hanging", label: "System Weight", value: "5.4 kg" },
+      { icon: "fas fa-ruler-combined", label: "Speaker Dims", value: "160 × 240 × 180mm" }
+    ],
+    preview: ["120W", "2-Way", "USB-C"]
+  }
+];
+
+// Pricing: { productId: { price: "₹85,000", note: "Starting price" } }
+let pricing = JSON.parse(localStorage.getItem('mcaudios_pricing') || 'null') || {
+  1: { price: "₹85,000", note: "Starting price" },
+  2: { price: "₹1,45,000", note: "Starting price" },
+  3: { price: "₹72,000", note: "Per channel" },
+  4: { price: "₹38,000", note: "Complete system" }
+};
+
+let orders = JSON.parse(localStorage.getItem('mcaudios_orders') || '[]');
+let inventory = JSON.parse(localStorage.getItem('mcaudios_inventory') || 'null');
+if (!inventory) {
+  inventory = {};
+  products.forEach(p => { inventory[p.id] = true; });
+  saveInventory();
+}
+
+let currentProduct = null;
+let adminLoggedIn = false;
+
+function saveOrders() { localStorage.setItem('mcaudios_orders', JSON.stringify(orders)); }
+function saveInventory() { localStorage.setItem('mcaudios_inventory', JSON.stringify(inventory)); }
+function savePricing() { localStorage.setItem('mcaudios_pricing', JSON.stringify(pricing)); }
+function saveCredentials() {
+  const newId = document.getElementById('newAdminId').value.trim();
+  const cur = document.getElementById('currentPass').value;
+  const nw = document.getElementById('newPass').value;
+  const cf = document.getElementById('confirmPass').value;
+  if (!cur) { showToast('Enter your current password', 'error'); return; }
+  if (cur !== ADMIN_CREDENTIALS.password) { showToast('Current password is incorrect', 'error'); return; }
+  if (!nw) { showToast('Enter a new password', 'error'); return; }
+  if (nw !== cf) { showToast('New passwords do not match', 'error'); return; }
+  if (newId) ADMIN_CREDENTIALS.id = newId;
+  ADMIN_CREDENTIALS.password = nw;
+  localStorage.setItem('mcaudios_creds', JSON.stringify(ADMIN_CREDENTIALS));
+  document.getElementById('currentPass').value = '';
+  document.getElementById('newPass').value = '';
+  document.getElementById('confirmPass').value = '';
+  document.getElementById('newAdminId').value = '';
+  showToast('Credentials updated successfully!', 'success');
+}
+function saveStoreInfo() {
+  storeInfo.name = document.getElementById('storeName').value.trim() || 'MC AUDIOS';
+  storeInfo.whatsapp = document.getElementById('storeWhatsapp').value.trim();
+  storeInfo.email = document.getElementById('storeEmail').value.trim();
+  storeInfo.instagram = document.getElementById('storeInsta').value.trim();
+  localStorage.setItem('mcaudios_store', JSON.stringify(storeInfo));
+  showToast('Store info saved!', 'success');
+}
+function exportOrders() {
+  const blob = new Blob([JSON.stringify(orders, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'mcaudios-orders.json'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Orders exported!', 'success');
+}
+function clearAllOrders() {
+  if (!confirm('Are you sure you want to delete ALL orders? This cannot be undone.')) return;
+  orders = [];
+  saveOrders();
+  updateNotifBadge();
+  if (document.getElementById('page-orders').classList.contains('active')) renderAllOrders();
+  if (document.getElementById('page-dashboard').classList.contains('active')) renderAdminDashboard();
+  showToast('All orders cleared.', 'info');
+}
+
+// ===== TOAST =====
+function showToast(msg, type='info') {
+  const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-bell' };
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fas ${icons[type]}"></i><span>${msg}</span>`;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(() => t.remove(), 4000);
+}
+
+// ===== NAVBAR =====
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+function toggleMobileNav() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileNav').classList.toggle('hidden');
+}
+function closeMobileNav() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileNav').classList.add('hidden');
+}
+function scrollToTracking() {
+  document.getElementById('tracking').scrollIntoView({ behavior: 'smooth' });
+}
+function clearTracking() {
+  document.getElementById('trackingResult').innerHTML = '';
+}
+
+// ===== RENDER PRODUCTS =====
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '';
+  products.forEach(p => {
+    const inStock = inventory[p.id] !== false;
+    const priceData = pricing[p.id] || { price: 'Contact for pricing', note: '' };
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-image-wrap">
+        <div class="product-img-bg"></div>
+        <div class="product-visual">${p.emoji}</div>
+        <div class="product-badge">${p.category.split(' ')[0]}</div>
+        <div class="product-stock-badge ${inStock ? 'in-stock' : 'out-stock'}">${inStock ? '✓ In Stock' : '✗ Out of Stock'}</div>
+      </div>
+      <div class="product-body">
+        <div class="product-category">${p.category}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.description}</div>
+        <div class="product-specs-preview">
+          ${p.preview.map(s => `<div class="spec-chip"><i class="fas fa-check-circle"></i>${s}</div>`).join('')}
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <small>${priceData.note || 'Starting at'}</small>
+            ${priceData.price}
+          </div>
+          <button class="btn-specs" onclick="openSpecs(${p.id})" ${!inStock ? 'disabled title="Out of stock"' : ''}>
+            ${inStock ? 'View Specs' : 'Out of Stock'}
+          </button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+// ===== SPECS MODAL =====
+function openSpecs(productId) {
+  currentProduct = products.find(p => p.id === productId);
+  if (!currentProduct) return;
+  const h = document.getElementById('specsHeader');
+  const b = document.getElementById('specsBody');
+  const f = document.getElementById('specsFooter');
+  const inStock = inventory[currentProduct.id] !== false;
+  const priceData = pricing[currentProduct.id] || { price: 'Contact for pricing', note: '' };
+  h.innerHTML = `
+    <span class="specs-product-visual">${currentProduct.emoji}</span>
+    <div class="specs-category">${currentProduct.category}</div>
+    <div class="specs-title">${currentProduct.name}</div>
+    <div class="specs-tagline">${currentProduct.tagline}</div>
+    <div class="specs-price-display">
+      <div>
+        <div class="price-label">${priceData.note || 'Starting at'}</div>
+        <div class="price-val">${priceData.price}</div>
+      </div>
+    </div>`;
+  b.innerHTML = `
+    <p class="specs-desc">${currentProduct.description}</p>
+    <div class="specs-grid">
+      ${currentProduct.specs.map(s => `
+        <div class="spec-item">
+          <div class="spec-icon"><i class="${s.icon}"></i></div>
+          <div class="spec-info"><label>${s.label}</label><span>${s.value}</span></div>
+        </div>`).join('')}
+    </div>`;
+  f.innerHTML = `
+    <button class="btn-secondary" style="flex:0.5" onclick="closeSpecs()">← Back</button>
+    <button class="btn-order" onclick="openOrder()" ${!inStock ? 'disabled' : ''}>
+      ${inStock ? 'Place Order →' : 'Out of Stock'}
+    </button>`;
+  document.getElementById('specsModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeSpecs() {
+  document.getElementById('specsModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// ===== ORDER MODAL =====
+function openOrder() {
+  closeSpecs();
+  if (!currentProduct) return;
+  document.getElementById('orderProductPreview').innerHTML = `
+    <div class="emoji">${currentProduct.emoji}</div>
+    <div><div class="prod-name">${currentProduct.name}</div><div class="prod-cat">${currentProduct.category}</div></div>`;
+  ['orderFirstName','orderLastName','orderPhone','orderAddress','orderNotes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('orderModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeOrder() {
+  document.getElementById('orderModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+function submitOrder() {
+  const fn = document.getElementById('orderFirstName').value.trim();
+  const ln = document.getElementById('orderLastName').value.trim();
+  const phone = document.getElementById('orderPhone').value.trim();
+  const addr = document.getElementById('orderAddress').value.trim();
+  const notes = document.getElementById('orderNotes').value.trim();
+  if (!fn) { showToast('Please enter your first name', 'error'); return; }
+  if (!ln) { showToast('Please enter your last name', 'error'); return; }
+  if (!phone) { showToast('Please enter your WhatsApp number', 'error'); return; }
+  if (!addr) { showToast('Please enter your delivery address', 'error'); return; }
+  const orderId = 'MC' + Date.now().toString().slice(-6);
+  const order = {
+    id: orderId, firstName: fn, lastName: ln, phone, address: addr, notes,
+    product: currentProduct.name, productCategory: currentProduct.category,
+    productEmoji: currentProduct.emoji, productId: currentProduct.id,
+    date: new Date().toISOString(), status: 'received'
+  };
+  orders.unshift(order);
+  saveOrders();
+  closeOrder();
+  showConfirmation(order);
+  updateNotifBadge();
+}
+
+// ===== CONFIRMATION =====
+function showConfirmation(order) {
+  const waMsg = encodeURIComponent(`Hello ${order.firstName}, your order with MC AUDIOS has been successfully placed! 🎵 Our team has started working on your audio system. Estimated delivery: 7–10 days. We'll notify you when ready. Order ID: ${order.id}`);
+  const waNum = storeInfo.whatsapp || order.phone;
+  const waUrl = `https://wa.me/${order.phone}?text=${waMsg}`;
+  document.getElementById('confirmationContent').innerHTML = `
+    <div class="confirmation-icon"><i class="fas fa-check"></i></div>
+    <div class="confirmation-title">Order Placed!</div>
+    <p class="confirmation-sub">Thank you, <strong style="color:var(--gold)">${order.firstName}</strong>. Your MC AUDIOS system is being prepared. Our team will be in touch shortly.</p>
+    <div class="order-id-badge"><span>Your Order ID</span><strong>${order.id}</strong></div>
+    <br>
+    <a class="whatsapp-btn" href="${waUrl}" target="_blank"><i class="fab fa-whatsapp"></i> Open WhatsApp Confirmation</a>
+    <br><br>
+    <button class="btn-secondary" style="margin-top:8px" onclick="closeConfirm()">Close</button>`;
+  document.getElementById('confirmModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeConfirm() {
+  document.getElementById('confirmModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// ===== TRACKING =====
+function trackOrder() {
+  const phone = document.getElementById('trackInput').value.trim();
+  if (!phone) { showToast('Please enter your WhatsApp number', 'error'); return; }
+  const userOrders = orders.filter(o => o.phone.includes(phone.replace(/\D/g,'').slice(-10)));
+  const res = document.getElementById('trackingResult');
+  if (!userOrders.length) {
+    res.innerHTML = `<div class="tracking-result" style="text-align:center;padding:40px"><i class="fas fa-search" style="font-size:2rem;color:var(--muted2);display:block;margin-bottom:16px"></i><p style="color:var(--muted)">No orders found for this number.</p></div>`;
+    return;
+  }
+  const statuses = ['received','working','ready','completed'];
+  const statusLabels = { received:'Order Received', working:'Working on Order', ready:'Ready for Pickup', completed:'Completed' };
+  const statusSubs = { received:'We received your order and confirmed it.', working:'Our team is crafting your audio system.', ready:'Your system is ready. Visit us to collect.', completed:'Order completed. Enjoy the sound!' };
+  res.innerHTML = userOrders.map(o => {
+    const idx = statuses.indexOf(o.status);
+    return `<div class="tracking-result" style="margin-bottom:16px">
+      <div class="tracking-header">
+        <div><div class="tracking-order-id">Order #${o.id}</div><div class="tracking-product">${o.productEmoji} ${o.product}</div></div>
+        <div class="status-badge status-${o.status}">${statusLabels[o.status]}</div>
+      </div>
+      <div class="tracking-steps">
+        ${statuses.map((s,i) => `
+          <div class="step ${i < idx ? 'done' : i === idx ? 'active' : ''}">
+            <div class="step-dot">${i < idx ? '<i class="fas fa-check" style="font-size:0.65rem"></i>' : `${i+1}`}</div>
+            <div class="step-content">
+              <div class="step-label">${statusLabels[s]}</div>
+              <div class="step-sub">${i === idx ? statusSubs[s] : (i < idx ? 'Completed' : 'Pending')}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ===== ADMIN =====
+function openAdminLogin() {
+  if (adminLoggedIn) { document.getElementById('admin-panel').classList.remove('hidden'); return; }
+  document.getElementById('adminLoginModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeAdminLogin() {
+  document.getElementById('adminLoginModal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+function adminLogin(e) {
+  e.preventDefault();
+  const id = document.getElementById('adminId').value.trim();
+  const pw = document.getElementById('adminPass').value;
+  if (id === ADMIN_CREDENTIALS.id && pw === ADMIN_CREDENTIALS.password) {
+    adminLoggedIn = true;
+    closeAdminLogin();
+    document.getElementById('admin-panel').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    renderAdminDashboard();
+    loadSettingsFields();
+    showToast('Welcome back, Admin! 👋', 'success');
+  } else {
+    document.getElementById('loginError').classList.remove('hidden');
+  }
+}
+function adminLogout() {
+  adminLoggedIn = false;
+  document.getElementById('admin-panel').classList.add('hidden');
+  document.body.style.overflow = '';
+  document.getElementById('adminId').value = '';
+  document.getElementById('adminPass').value = '';
+  document.getElementById('loginError').classList.add('hidden');
+}
+function showAdminPage(name, el) {
+  document.querySelectorAll('.admin-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.admin-menu-item').forEach(m => m.classList.remove('active'));
+  document.getElementById(`page-${name}`).classList.add('active');
+  el.classList.add('active');
+  if (name === 'dashboard') renderAdminDashboard();
+  if (name === 'orders') renderAllOrders();
+  if (name === 'inventory') renderInventory();
+  if (name === 'products') renderPricingManager();
+  if (name === 'settings') loadSettingsFields();
+}
+function openNotifPanel() {
+  const newOrders = orders.filter(o => o.status === 'received').length;
+  showToast(newOrders ? `${newOrders} new order${newOrders>1?'s':''} pending review.` : 'No new notifications.', 'info');
+}
+function updateNotifBadge() {
+  const n = orders.filter(o => o.status === 'received').length;
+  const badge = document.getElementById('notifBadge');
+  const menuBadge = document.getElementById('badge-new');
+  if (badge) { badge.textContent = n; badge.classList.toggle('hidden', !n); }
+  if (menuBadge) { menuBadge.textContent = n; menuBadge.classList.toggle('hidden', !n); }
+}
+
+// ===== ADMIN DASHBOARD =====
+function renderAdminDashboard() {
+  updateNotifBadge();
+  const total = orders.length;
+  const active = orders.filter(o => o.status !== 'completed').length;
+  const ready = orders.filter(o => o.status === 'ready').length;
+  const done = orders.filter(o => o.status === 'completed').length;
+  const newOrd = orders.filter(o => o.status === 'received').length;
+  document.getElementById('adminStats').innerHTML = `
+    <div class="admin-stat-card"><div class="stat-card-top"><div class="stat-card-icon gold"><i class="fas fa-shopping-bag"></i></div></div><div class="stat-card-num">${total}</div><div class="stat-card-label">Total Orders</div></div>
+    <div class="admin-stat-card"><div class="stat-card-top"><div class="stat-card-icon blue"><i class="fas fa-spinner"></i></div></div><div class="stat-card-num">${active}</div><div class="stat-card-label">Active Orders</div></div>
+    <div class="admin-stat-card"><div class="stat-card-top"><div class="stat-card-icon green"><i class="fas fa-box-open"></i></div></div><div class="stat-card-num">${ready}</div><div class="stat-card-label">Ready for Pickup</div></div>
+    <div class="admin-stat-card"><div class="stat-card-top"><div class="stat-card-icon red"><i class="fas fa-check-double"></i></div></div><div class="stat-card-num">${done}</div><div class="stat-card-label">Completed</div></div>`;
+  document.getElementById('recentOrdersTable').innerHTML = buildOrdersTable(orders.slice(0, 5));
+}
+
+// ===== ADMIN ORDERS TABLE =====
+function buildOrdersTable(list) {
+  if (!list.length) return `<div class="no-orders"><i class="fas fa-inbox"></i>No orders yet.</div>`;
+  const statusLabels = { received:'Order Received', working:'Working on Order', ready:'Ready for Pickup', completed:'Completed' };
+  return `<div style="overflow-x:auto"><table class="admin-table"><thead><tr>
+    <th>Order ID</th><th>Customer</th><th>Product</th><th>Date</th><th>Status</th><th>Actions</th>
+  </tr></thead><tbody>
+    ${list.map(o => `<tr>
+      <td><div class="order-id-cell">#${o.id}</div></td>
+      <td><div class="customer-cell"><strong>${o.firstName} ${o.lastName}</strong><a href="https://wa.me/${o.phone}" target="_blank"><i class="fab fa-whatsapp"></i> ${o.phone}</a></div></td>
+      <td>${o.productEmoji} ${o.product}</td>
+      <td>${new Date(o.date).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</td>
+      <td>
+        <select class="status-select" onchange="updateOrderStatus('${o.id}', this.value)">
+          <option value="received" ${o.status==='received'?'selected':''}>Order Received</option>
+          <option value="working" ${o.status==='working'?'selected':''}>Working on Order</option>
+          <option value="ready" ${o.status==='ready'?'selected':''}>Ready for Pickup</option>
+          <option value="completed" ${o.status==='completed'?'selected':''}>Completed</option>
+        </select>
+      </td>
+      <td><div class="action-btns">
+        ${o.status==='completed' ? `<button class="btn-sm btn-invoice" onclick="generateInvoice('${o.id}')"><i class="fas fa-file-invoice"></i> Invoice</button>` : ''}
+        ${o.status==='ready' ? `<button class="btn-sm btn-wa" onclick="sendReadyWA('${o.id}')"><i class="fab fa-whatsapp"></i> Notify</button>` : ''}
+        <button class="btn-sm btn-delete" onclick="deleteOrder('${o.id}')"><i class="fas fa-trash"></i></button>
+      </div></td>
+    </tr>`).join('')}
+  </tbody></table></div>`;
+}
+function renderAllOrders(query='') {
+  const filtered = query ? orders.filter(o =>
+    o.id.toLowerCase().includes(query) ||
+    `${o.firstName} ${o.lastName}`.toLowerCase().includes(query) ||
+    o.phone.includes(query) ||
+    o.product.toLowerCase().includes(query)
+  ) : orders;
+  document.getElementById('allOrdersTable').innerHTML = buildOrdersTable(filtered);
+}
+function filterOrders(q) { renderAllOrders(q.toLowerCase()); }
+function updateOrderStatus(orderId, newStatus) {
+  const order = orders.find(o => o.id === orderId);
+  if (!order) return;
+  const old = order.status;
+  order.status = newStatus;
+  saveOrders();
+  updateNotifBadge();
+  showToast(`Order #${orderId} → ${newStatus.replace('_',' ')}`, 'success');
+  if (newStatus === 'ready' && old !== 'ready') {
+    setTimeout(() => showToast(`Order ready! Send WhatsApp notification to ${order.firstName}.`, 'info'), 500);
+  }
+  if (document.getElementById('page-orders').classList.contains('active')) renderAllOrders();
+  if (document.getElementById('page-dashboard').classList.contains('active')) renderAdminDashboard();
+}
+function deleteOrder(orderId) {
+  if (!confirm('Delete this order?')) return;
+  orders = orders.filter(o => o.id !== orderId);
+  saveOrders();
+  updateNotifBadge();
+  if (document.getElementById('page-orders').classList.contains('active')) renderAllOrders();
+  if (document.getElementById('page-dashboard').classList.contains('active')) renderAdminDashboard();
+  showToast('Order deleted.', 'info');
+}
+function sendReadyWA(orderId) {
+  const o = orders.find(x => x.id === orderId);
+  if (!o) return;
+  const msg = encodeURIComponent(`Hello ${o.firstName}! 🎵 Your MC AUDIOS order is ready for pickup. Please visit our store to complete the payment and collect your system. Order ID: #${o.id}. Thank you for choosing MC AUDIOS!`);
+  window.open(`https://wa.me/${o.phone}?text=${msg}`, '_blank');
+}
+
+// ===== INVENTORY =====
+function renderInventory() {
+  document.getElementById('inventoryGrid').innerHTML = products.map(p => {
+    const inStock = inventory[p.id] !== false;
+    return `<div class="inventory-card">
+      <div class="inv-header">
+        <div class="inv-emoji">${p.emoji}</div>
+        <label class="toggle-switch" title="${inStock ? 'In Stock' : 'Out of Stock'}">
+          <input type="checkbox" ${inStock ? 'checked' : ''} onchange="toggleInventory(${p.id}, this.checked)">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="inv-name">${p.name}</div>
+      <div class="inv-cat">${p.category}</div>
+      <div class="inv-status-label">Status</div>
+      <div class="inv-status-value" id="inv-status-${p.id}" style="color:${inStock ? '#2ed573' : '#ff4757'}">${inStock ? '✓ Available' : '✗ Out of Stock'}</div>
+    </div>`;
+  }).join('');
+}
+function toggleInventory(productId, checked) {
+  inventory[productId] = checked;
+  saveInventory();
+  renderProducts();
+  const el = document.getElementById(`inv-status-${productId}`);
+  if (el) { el.textContent = checked ? '✓ Available' : '✗ Out of Stock'; el.style.color = checked ? '#2ed573' : '#ff4757'; }
+  showToast(`Product ${checked ? 'marked available' : 'marked out of stock'}`, checked ? 'success' : 'info');
+}
+
+// ===== PRICING MANAGER =====
+function renderPricingManager() {
+  document.getElementById('productsManageGrid').innerHTML = products.map(p => {
+    const pr = pricing[p.id] || { price: '', note: '' };
+    return `<div class="product-manage-card">
+      <div class="pm-header">
+        <div class="pm-emoji">${p.emoji}</div>
+        <div class="pm-info">
+          <div class="pm-name">${p.name}</div>
+          <div class="pm-cat">${p.category}</div>
+        </div>
+      </div>
+      <div class="pm-price-row">
+        <label>Display Price</label>
+        <div class="pm-price-input-wrap">
+          <input type="text" id="price-${p.id}" value="${pr.price}" placeholder="e.g. ₹85,000">
+          <button class="pm-save-btn" onclick="saveProductPrice(${p.id})">Save</button>
+        </div>
+      </div>
+      <div class="pm-note-row">
+        <label>Price Note (shown above price)</label>
+        <input type="text" id="note-${p.id}" value="${pr.note}" placeholder="e.g. Starting price, Per channel">
+      </div>
+    </div>`;
+  }).join('');
+}
+function saveProductPrice(productId) {
+  const price = document.getElementById(`price-${productId}`).value.trim();
+  const note = document.getElementById(`note-${productId}`).value.trim();
+  pricing[productId] = { price: price || 'Contact for pricing', note };
+  savePricing();
+  renderProducts();
+  showToast('Price updated on storefront!', 'success');
+}
+
+// ===== SETTINGS =====
+function loadSettingsFields() {
+  document.getElementById('storeName').value = storeInfo.name || '';
+  document.getElementById('storeWhatsapp').value = storeInfo.whatsapp || '';
+  document.getElementById('storeEmail').value = storeInfo.email || '';
+  document.getElementById('storeInsta').value = storeInfo.instagram || '';
+  document.getElementById('newAdminId').value = ADMIN_CREDENTIALS.id || '';
+}
+
+// ===== INVOICE =====
+function generateInvoice(orderId) {
+  const o = orders.find(x => x.id === orderId);
+  if (!o) return;
+  const purchaseDate = new Date(o.date);
+  const warrantyDate = new Date(purchaseDate);
+  warrantyDate.setFullYear(warrantyDate.getFullYear() + 2);
+  const fmt = d => d.toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
+  const priceData = pricing[o.productId] || { price: 'As Quoted', note: '' };
+  document.getElementById('invoiceContent').innerHTML = `
+    <div class="inv-header-row">
+      <div><div class="inv-logo">MC<span>.</span>AUDIOS<small>Premium Audio Systems</small></div></div>
+      <div class="inv-label"><h2>Invoice</h2><p>Order #${o.id}</p><p>${fmt(purchaseDate)}</p></div>
+    </div>
+    <div class="inv-gold-line"></div>
+    <div class="inv-info-grid">
+      <div class="inv-info-col">
+        <h4>Bill To</h4>
+        <p><strong>${o.firstName} ${o.lastName}</strong><br>WhatsApp: ${o.phone}<br>${o.address.replace(/\n/g,'<br>')}</p>
+      </div>
+      <div class="inv-info-col">
+        <h4>From</h4>
+        <p><strong>${storeInfo.name}</strong><br>Premium Audio Systems<br>${storeInfo.email}</p>
+      </div>
+    </div>
+    <table class="inv-table">
+      <thead><tr><th>Item</th><th>Category</th><th>Description</th><th>Qty</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>${o.product}</strong></td>
+          <td>${o.productCategory}</td>
+          <td>Custom built audio system</td>
+          <td>1</td>
+          <td>${priceData.price}</td>
+        </tr>
+        ${o.notes ? `<tr><td colspan="4" style="font-size:0.78rem;color:#666">Note: ${o.notes}</td><td></td></tr>` : ''}
+        <tr class="inv-total-row">
+          <td colspan="4" style="text-align:right;font-weight:700;color:#c9a84c">Total</td>
+          <td>${priceData.price}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="inv-warranty">
+      <i class="fas fa-shield-alt"></i>
+      <p><strong>Warranty Information:</strong> This product is covered by a <strong>2-Year Manufacturer's Warranty</strong> by MC AUDIOS. Valid from <strong>${fmt(purchaseDate)}</strong> to <strong>${fmt(warrantyDate)}</strong>. Covers manufacturing defects and component failure. Does not cover physical damage or misuse.</p>
+    </div>
+    <div class="inv-footer-row">
+      <div><p>Thank you for choosing MC AUDIOS.</p><p style="margin-top:4px">Experience Sound Like Never Before.</p></div>
+      <div class="inv-sig"><p>MC AUDIOS</p><small>Authorized Signature</small></div>
+    </div>`;
+  document.getElementById('invoice-print').style.display = 'block';
+}
+function closeInvoice() { document.getElementById('invoice-print').style.display = 'none'; }
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  ['specsModal','orderModal','confirmModal','adminLoginModal'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function(e) {
+      if (e.target === this) { this.classList.add('hidden'); document.body.style.overflow = ''; }
+    });
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.product-card, .feature-card, .why-item').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+  updateNotifBadge();
+});
+</script>
+</body>
+</html>
