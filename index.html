@@ -35,6 +35,36 @@
 }
 html { scroll-behavior: smooth; }
   <script>
+  <script>
+let stock = 10;
+
+// Load saved stock
+if(localStorage.getItem("stock")){
+  stock = parseInt(localStorage.getItem("stock"));
+}
+
+function updateUI(){
+  document.getElementById("stockCount").innerText = stock;
+  localStorage.setItem("stock", stock);
+}
+
+// Use stock
+function useStock(){
+  if(stock > 0){
+    stock--;
+    updateUI();
+  }
+}
+
+// Add stock
+function addStock(){
+  stock++;
+  updateUI();
+}
+
+// Run on load
+window.onload = updateUI;
+</script>
 // 🔐 ADMIN CREDENTIALS
 const ADMIN_ID = "naveen";
 const ADMIN_PASS = "1234";
@@ -85,6 +115,26 @@ function logoutAdmin() {
 
       <button class="login-btn" onclick="loginAdmin()">Login</button>
       <div id="loginError" class="login-error"></div>
+    </div>
+  </div>
+</div>
+  <div id="admin-panel" class="hidden">
+  <div style="padding:20px; color:white;">
+    <h2>Admin Dashboard</h2>
+    <p>Welcome, Admin 👋</p>
+
+    <button onclick="logoutAdmin()">Logout</button>
+
+    <hr style="margin:20px 0;">
+
+    <h3>Inventory</h3>
+
+    <div>
+      <p>Product: Speaker</p>
+      <p>Stock: <span id="stockCount">10</span></p>
+
+      <button onclick="useStock()">Use 1</button>
+      <button onclick="addStock()">Add 1</button>
     </div>
   </div>
 </div>
