@@ -34,6 +34,60 @@
   --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
 }
 html { scroll-behavior: smooth; }
+  <script>
+// 🔐 ADMIN CREDENTIALS
+const ADMIN_ID = "naveen";
+const ADMIN_PASS = "1234";
+
+// Open login modal
+function openAdminLogin() {
+  document.getElementById("adminLoginModal").classList.remove("hidden");
+}
+
+// Close login modal
+function closeAdminLogin() {
+  document.getElementById("adminLoginModal").classList.add("hidden");
+}
+
+// Login function
+function loginAdmin() {
+  const id = document.getElementById("adminId").value;
+  const pass = document.getElementById("adminPass").value;
+
+  if (id === ADMIN_ID && pass === ADMIN_PASS) {
+    closeAdminLogin();
+    document.getElementById("admin-panel").classList.remove("hidden");
+  } else {
+    document.getElementById("loginError").innerText = "Invalid credentials!";
+  }
+}
+
+// Logout
+function logoutAdmin() {
+  document.getElementById("admin-panel").classList.add("hidden");
+}
+</script>
+  <div id="adminLoginModal" class="modal-overlay hidden">
+  <div class="modal admin-login-modal">
+    <div class="admin-logo">MC<span>.</span>AUDIOS</div>
+    <div class="admin-login-sub">Admin Access</div>
+
+    <div class="admin-login-form">
+      <div class="form-group">
+        <label>Admin ID</label>
+        <input type="text" id="adminId" placeholder="Enter ID">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="adminPass" placeholder="Enter password">
+      </div>
+
+      <button class="login-btn" onclick="loginAdmin()">Login</button>
+      <div id="loginError" class="login-error"></div>
+    </div>
+  </div>
+</div>
 body {
   font-family: var(--font-body);
   background: var(--bg);
